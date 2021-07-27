@@ -12,9 +12,13 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::all();
-
-
         // return view('welcome', ['products' => $products]);
         return view('welcome', compact('products'));
+    }
+
+
+    public function mechanism(){
+        $products = Product::all();
+        return view('mechanism',compact('products'));
     }
 }

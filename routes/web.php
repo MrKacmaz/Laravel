@@ -22,3 +22,4 @@ Route::get('/', function () {
 
 
 Route::get('/', [ProductsController::class, 'index']);
+Route::get('/mechanism', [ProductsController::class, 'mechanism']);
