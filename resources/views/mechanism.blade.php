@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel Mechanism Page</title>
+    <title>Laravel Main Page</title>
 
     <!-- W3 School -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -32,7 +32,6 @@
 
 <body>
 
-
     <div class="container-fluid">
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
@@ -54,15 +53,15 @@
                                 <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
                             <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                                 <li class="w-100">
-                                    <a href="{{ url('') }}" class="nav-link px-0"> <span
+                                    <a href="{{ url('electronic') }}" class="nav-link px-0"> <span
                                             class="d-none d-sm-inline">Electronic</span></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="nav-link px-0"> <span
+                                    <a href="{{ url('mechanism') }}" class="nav-link px-0"> <span
                                             class="d-none d-sm-inline">Mechanism</span></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="nav-link px-0"> <span
+                                    <a href="{{ url('architect') }}" class="nav-link px-0"> <span
                                             class="d-none d-sm-inline">Arthitect</span></a>
                                 </li>
                             </ul>

@@ -72,44 +72,24 @@
 
             <div id="products" class="col py-3">
                 <div class="row">
-                    <?php
-                    $counter = 1;
-                    ?>
                     @foreach ($products as $prod)
 
-                        @if ($prod->category === 'Electronic')
-
+                        @if ($prod->category === 'Architect')
                             <div class="col-4">
-                                <div class="card border-4 mb-3 w3-hover-pale-red" style="max-width: 18rem;">
-                                    <div class="card-header bg-transparent w3-text-deep-orange">
-                                        {{ $prod->category }}
+                                <div class="card border-success mb-3" style="max-width: 18rem;">
+                                    <div class="card-header bg-transparent border-success">{{ $prod->category }}
                                     </div>
-
                                     <div class="card-body text-success">
-                                        <h2 class="card-title w3-text-indigo">{{ $prod->name }}</h2>
-                                        <div style="display: block">
-                                            <h6 id='stockID{{ $counter }}' class="card-title">{{ $prod->stock }}
-                                            </h6>
-                                        </div>
-                                    </div>
+                                        <h4 class="card-title">{{ $prod->name }}</h4>
+                                        <h6 class="card-title">Stock: {{ $prod->stock }}</h6>
 
-                                    <div class="card-footer bg-transparent">
-                                        <div style="display: block">
-                                            <h6 id='priceID{{ $counter }}'>${{ $prod->price }}</h6>
-                                        </div>
-                                        <div class="d-grid gap-2 col-6 mx-auto">
-                                            <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop"
-                                                onclick="openModalInfo({{ $counter }})">BUY</button>
-                                        </div>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-success">Cost:
+                                        ${{ $prod->price }}
                                     </div>
                                 </div>
                             </div>
-
                         @endif
-                        <?php
-                        $counter = $counter + 1;
-                        ?>
 
                     @endforeach
                 </div>
@@ -117,45 +97,6 @@
 
         </div>
     </div>
-
-
-    {{-- MODAL --}}
-
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="stock"></div>
-                    <div id="price"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Buy</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        $(document).ready(function() {
-
-
-        });
-
-        function openModalInfo(count) {
-            $('#stock').text($('stockID' + count).html() + " stockID" + count + "  " + $('stockID' + count)
-                .text() +
-                " asdas " + $(
-                    'stockID' + count).val());
-            // $("#price").text(ths);
-        }
-    </script>
 
 
 </body>

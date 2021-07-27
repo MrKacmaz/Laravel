@@ -17,8 +17,16 @@ class ProductsController extends Controller
     }
 
 
-    public function mechanism(){
+    public function mechanism()
+    {
         $products = Product::all();
-        return view('mechanism',compact('products'));
+        return view('mechanism', compact('products'));
+    }
+
+
+    public function architect()
+    {
+        $products = Product::all();
+        return view('architect', compact('products'));
     }
 }
