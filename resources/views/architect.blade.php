@@ -34,7 +34,7 @@
 
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark bg-gradient">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                     <a href="/"
                         class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -44,25 +44,29 @@
                         id="menu">
                         <li class="nav-item">
                             <a href="#" class="nav-link align-middle px-0">
-                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                                <p class="ms-1 d-none d-sm-inline w3-xlarge w3-text-white w3-hover-text-deep-orange">
+                                    Home</p>
                             </a>
+
                         </li>
 
                         <li>
                             <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
+                                <p class="ms-1 d-none d-sm-inline w3-xlarge w3-text-white w3-hover-text-deep-orange">
+                                    Products</p>
+                            </a>
                             <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                                 <li class="w-100">
                                     <a href="{{ url('electronic') }}" class="nav-link px-0"> <span
-                                            class="d-none d-sm-inline">Electronic</span></a>
+                                            class="d-none d-sm-inline w3-text-green w3-hover-text-deep-orange">Electronic</span></a>
                                 </li>
                                 <li>
                                     <a href="{{ url('mechanism') }}" class="nav-link px-0"> <span
-                                            class="d-none d-sm-inline">Mechanism</span></a>
+                                            class="d-none d-sm-inline w3-text-green w3-hover-text-deep-orange">Mechanism</span></a>
                                 </li>
                                 <li>
                                     <a href="{{ url('architect') }}" class="nav-link px-0"> <span
-                                            class="d-none d-sm-inline">Arthitect</span></a>
+                                            class="d-none d-sm-inline w3-text-green w3-hover-text-deep-orange">Arthitect</span></a>
                                 </li>
                             </ul>
                         </li>
@@ -72,24 +76,45 @@
 
             <div id="products" class="col py-3">
                 <div class="row">
+                    <?php
+                    $counter = 1;
+                    ?>
                     @foreach ($products as $prod)
 
                         @if ($prod->category === 'Architect')
-                            <div class="col-4">
-                                <div class="card border-success mb-3" style="max-width: 18rem;">
-                                    <div class="card-header bg-transparent border-success">{{ $prod->category }}
-                                    </div>
-                                    <div class="card-body text-success">
-                                        <h4 class="card-title">{{ $prod->name }}</h4>
-                                        <h6 class="card-title">Stock: {{ $prod->stock }}</h6>
 
+                            <div class="col-4">
+                                <div class="card border-4 mb-3 w3-hover-pale-red" style="max-width: 18rem;">
+                                    <div class="card-header bg-transparent w3-text-deep-orange">
+                                        {{ $prod->category }}
                                     </div>
-                                    <div class="card-footer bg-transparent border-success">Cost:
-                                        ${{ $prod->price }}
+
+                                    <div class="card-body text-success">
+                                        <h2 id='nameID{{ $counter }}' class="card-title w3-text-indigo">
+                                            {{ $prod->name }}</h2>
+                                        <div style="display: none">
+                                            <h6 id='stockID{{ $counter }}' class="card-title">{{ $prod->stock }}
+                                            </h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-footer bg-transparent">
+                                        <div style="display: none">
+                                            <h6 id='priceID{{ $counter }}'>${{ $prod->price }}</h6>
+                                        </div>
+                                        <div class="d-grid gap-2 col-6 mx-auto">
+                                            <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
+                                                data-bs-target="#staticBackdrop"
+                                                onclick="openModalInfo({{ $counter }})">BUY</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         @endif
+                        <?php
+                        $counter = $counter + 1;
+                        ?>
 
                     @endforeach
                 </div>
@@ -99,6 +124,85 @@
     </div>
 
 
+    <!-- Modal -->
+    <div class="modal fade bg-dark" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-4">
+                            </div>
+                            <div class="col-4 text-center w3-xxlarge w3-text-deep-orange">
+                                <div id="name"></div>
+                            </div>
+                            <div class="col-4">
+                            </div>
+                        </div>
+                        <br><br><br>
+                        <div class="row">
+                            <div class="col text-center w3-xlarge w3-text-indigo">
+                                <div id="stock"></div>
+                            </div>
+                            <div class="col text-center w3-xlarge w3-text-indigo">
+                                <div id="price"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" onclick="modalBuySwal()">Buy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+
+        });
+
+        function openModalInfo(count) {
+            $("#staticBackdropLabel").text("ARCHITECT");
+
+            $("#name").text($('#nameID' + count).text());
+
+            $('#stock').text("Stock: " + parseInt($('#stockID' + count).text()));
+
+            $("#price").text("Cost: " + $('#priceID' + count).text());
+        }
+
+        function modalBuySwal() {
+            swal({
+                    title: "Are you sure?",
+                    text: "You are going to buy this item",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Thanks for using MrKacmaz Online Shopping System!", {
+                            icon: "success",
+                        });
+
+                        $("#staticBackdrop").modal("hide");
+                    } else {
+                        $("#staticBackdrop").modal("hide");
+                    }
+                });
+
+        }
+    </script>
+
 </body>
+
 
 </html>
