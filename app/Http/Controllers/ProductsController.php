@@ -9,24 +9,35 @@ use App\Models\Product;
 
 class ProductsController extends Controller
 {
+    public function home()
+    {
+        $products = Product::all();
+        $catagoryName = 'All';
+        // return view('welcome', ['products' => $products]);
+        return view('welcome', compact('products', 'catagoryName'));
+    }
+
+
     public function index()
     {
         $products = Product::all();
-        // return view('welcome', ['products' => $products]);
-        return view('welcome', compact('products'));
+        $catagoryName = 'Electronic';
+        return view('welcome', compact('products', 'catagoryName'));
     }
 
 
     public function mechanism()
     {
         $products = Product::all();
-        return view('mechanism', compact('products'));
+        $catagoryName = 'Mechanism';
+        return view('welcome', compact('products', 'catagoryName'));
     }
 
 
     public function architect()
     {
         $products = Product::all();
-        return view('architect', compact('products'));
+        $catagoryName = 'Architect';
+        return view('welcome', compact('products', 'catagoryName'));
     }
 }

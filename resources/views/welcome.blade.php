@@ -36,19 +36,12 @@
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark bg-gradient">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <a href="/"
-                        class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                        <span class="fs-5 d-none d-sm-inline">Menu</span>
+                    <a href="{{ url('home') }}" class="nav-link align-middle px-0">
+                        <p class="ms-1 d-none d-sm-inline w3-xlarge w3-text-white w3-hover-text-deep-orange">
+                            Home</p>
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
                         id="menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link align-middle px-0">
-                                <p class="ms-1 d-none d-sm-inline w3-xlarge w3-text-white w3-hover-text-deep-orange">
-                                    Home</p>
-                            </a>
-
-                        </li>
 
                         <li>
                             <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
@@ -81,7 +74,7 @@
                     ?>
                     @foreach ($products as $prod)
 
-                        @if ($prod->category === 'Electronic')
+                        @if ($prod->category === $catagoryName)
 
                             <div class="col-4">
                                 <div class="card border-4 mb-3 w3-hover-pale-red" style="max-width: 18rem;">
@@ -94,6 +87,38 @@
                                             {{ $prod->name }}</h2>
                                         <div style="display: none">
                                             <h6 id='stockID{{ $counter }}' class="card-title">{{ $prod->stock }}
+                                            </h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-footer bg-transparent">
+                                        <div style="display: none">
+                                            <h6 id='priceID{{ $counter }}'>${{ $prod->price }}</h6>
+                                        </div>
+                                        <div class="d-grid gap-2 col-6 mx-auto">
+                                            <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
+                                                data-bs-target="#staticBackdrop"
+                                                onclick="openModalInfo({{ $counter }})">BUY</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        @elseif ($catagoryName === 'All')
+
+                            <div class="col-4">
+                                <div class="card border-4 mb-3 w3-hover-pale-red" style="max-width: 18rem;">
+                                    <div class="card-header bg-transparent w3-text-deep-orange">
+                                        {{ $prod->category }}
+                                    </div>
+
+                                    <div class="card-body text-success">
+                                        <h2 id='nameID{{ $counter }}' class="card-title w3-text-indigo">
+                                            {{ $prod->name }}</h2>
+                                        <div style="display: none">
+                                            <h6 id='stockID{{ $counter }}' class="card-title">
+                                                {{ $prod->stock }}
                                             </h6>
                                         </div>
                                     </div>

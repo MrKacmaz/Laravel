@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 
 
+Route::get('/home', [ProductsController::class, 'home']);
 Route::get('/', [ProductsController::class, 'index']);
 Route::get('/electronic', [ProductsController::class, 'index']);
 Route::get('/mechanism', [ProductsController::class, 'mechanism']);
