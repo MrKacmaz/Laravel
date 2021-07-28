@@ -14,30 +14,32 @@ class ProductsController extends Controller
         $products = Product::all();
         $catagoryName = 'All';
         // return view('welcome', ['products' => $products]);
-        return view('welcome', compact('products', 'catagoryName'));
+        return view('welcome', compact('products'));
     }
 
 
     public function index()
     {
-        $products = Product::all();
+        $products = Product::where('category', 'Electronic')
+            ->get();
         $catagoryName = 'Electronic';
-        return view('welcome', compact('products', 'catagoryName'));
+        return view('welcome', compact('products'));
     }
 
 
     public function mechanism()
     {
-        $products = Product::all();
-        $catagoryName = 'Mechanism';
-        return view('welcome', compact('products', 'catagoryName'));
+        $products = Product::where('category', 'Mechanism')
+            ->get();
+        return view('welcome', compact('products'));
     }
 
 
     public function architect()
     {
-        $products = Product::all();
+        $products = Product::where('category', 'Architect')
+            ->get();
         $catagoryName = 'Architect';
-        return view('welcome', compact('products', 'catagoryName'));
+        return view('welcome', compact('products'));
     }
 }

@@ -32,7 +32,9 @@
 
 <body>
 
+    <!-- Slidebar -->
     <div class="container-fluid">
+
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark bg-gradient">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
@@ -67,6 +69,7 @@
                 </div>
             </div>
 
+            <!-- Products -->
             <div id="products" class="col py-3">
                 <div class="row">
                     <?php
@@ -74,69 +77,34 @@
                     ?>
                     @foreach ($products as $prod)
 
-                        @if ($prod->category === $catagoryName)
+                        <div class="col-4">
+                            <div class="card border-4 mb-3 w3-hover-pale-red" style="max-width: 18rem;">
+                                <div class="card-header bg-transparent w3-text-deep-orange">
+                                    {{ $prod->category }}
+                                </div>
 
-                            <div class="col-4">
-                                <div class="card border-4 mb-3 w3-hover-pale-red" style="max-width: 18rem;">
-                                    <div class="card-header bg-transparent w3-text-deep-orange">
-                                        {{ $prod->category }}
+                                <div class="card-body text-success">
+                                    <h2 id='nameID{{ $counter }}' class="card-title w3-text-indigo">
+                                        {{ $prod->name }}</h2>
+                                    <div style="display: none">
+                                        <h6 id='stockID{{ $counter }}' class="card-title">{{ $prod->stock }}
+                                        </h6>
                                     </div>
+                                </div>
 
-                                    <div class="card-body text-success">
-                                        <h2 id='nameID{{ $counter }}' class="card-title w3-text-indigo">
-                                            {{ $prod->name }}</h2>
-                                        <div style="display: none">
-                                            <h6 id='stockID{{ $counter }}' class="card-title">{{ $prod->stock }}
-                                            </h6>
-                                        </div>
+                                <div class="card-footer bg-transparent">
+                                    <div style="display: none">
+                                        <h6 id='priceID{{ $counter }}'>${{ $prod->price }}</h6>
                                     </div>
-
-                                    <div class="card-footer bg-transparent">
-                                        <div style="display: none">
-                                            <h6 id='priceID{{ $counter }}'>${{ $prod->price }}</h6>
-                                        </div>
-                                        <div class="d-grid gap-2 col-6 mx-auto">
-                                            <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop"
-                                                onclick="openModalInfo({{ $counter }})">BUY</button>
-                                        </div>
+                                    <div class="d-grid gap-2 col-6 mx-auto">
+                                        <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop"
+                                            onclick="openModalInfo({{ $counter }})">BUY</button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-
-                        @elseif ($catagoryName === 'All')
-
-                            <div class="col-4">
-                                <div class="card border-4 mb-3 w3-hover-pale-red" style="max-width: 18rem;">
-                                    <div class="card-header bg-transparent w3-text-deep-orange">
-                                        {{ $prod->category }}
-                                    </div>
-
-                                    <div class="card-body text-success">
-                                        <h2 id='nameID{{ $counter }}' class="card-title w3-text-indigo">
-                                            {{ $prod->name }}</h2>
-                                        <div style="display: none">
-                                            <h6 id='stockID{{ $counter }}' class="card-title">
-                                                {{ $prod->stock }}
-                                            </h6>
-                                        </div>
-                                    </div>
-
-                                    <div class="card-footer bg-transparent">
-                                        <div style="display: none">
-                                            <h6 id='priceID{{ $counter }}'>${{ $prod->price }}</h6>
-                                        </div>
-                                        <div class="d-grid gap-2 col-6 mx-auto">
-                                            <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop"
-                                                onclick="openModalInfo({{ $counter }})">BUY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        @endif
                         <?php
                         $counter = $counter + 1;
                         ?>
@@ -147,7 +115,6 @@
 
         </div>
     </div>
-
 
     <!-- Modal -->
     <div class="modal fade bg-dark" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
