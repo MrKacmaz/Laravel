@@ -32,168 +32,89 @@
 
 <body>
 
-    <!-- Slidebar -->
-    <div class="container-fluid">
+    <div class="container col-md-4 my-4">
 
-        <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark bg-gradient">
-                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <a href="{{ url('home') }}" class="nav-link align-middle px-0">
-                        <p class="ms-1 d-none d-sm-inline w3-xlarge w3-text-white w3-hover-text-deep-orange">
-                            Home</p>
-                    </a>
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-                        id="menu">
+        <h1 class="text-center">SIGN</h1>
+        <hr>
 
-                        <li>
-                            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                <p class="ms-1 d-none d-sm-inline w3-xlarge w3-text-white w3-hover-text-deep-orange">
-                                    Products</p>
-                            </a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="{{ url('electronic') }}" class="nav-link px-0"> <span
-                                            class="d-none d-sm-inline w3-text-green w3-hover-text-deep-orange">Electronic</span></a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('mechanism') }}" class="nav-link px-0"> <span
-                                            class="d-none d-sm-inline w3-text-green w3-hover-text-deep-orange">Mechanism</span></a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('architect') }}" class="nav-link px-0"> <span
-                                            class="d-none d-sm-inline w3-text-green w3-hover-text-deep-orange">Arthitect</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+        {{-- TAB PANEL --}}
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="signIn-tab" data-bs-toggle="tab" data-bs-target="#signIn"
+                    type="button" role="tab" aria-controls="signIn" aria-selected="true">Sign-In</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="signUp-tab" data-bs-toggle="tab" data-bs-target="#signUp" type="button"
+                    role="tab" aria-controls="signUp" aria-selected="false">Sign-Up</button>
+            </li>
+        </ul>
+        {{-- TAB PANEL CONTENT --}}
+        <div class="tab-content" id="myTabContent">
+
+            {{-- user sign in --}}
+            <div class="tab-pane fade show active" id="signIn" role="tabpanel" aria-labelledby="signIn-tab">
+                <br>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="userSignInName" placeholder="Name">
+                    <label for="userSignInName">Name</label>
                 </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="userSignInSurname" placeholder="Surname">
+                    <label for="userSignInSurname">Surname</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="userSignInEmail" placeholder="name@example.com">
+                    <label for="userSignInEmail">Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="userSignInPassword" placeholder="Password">
+                    <label for="userSignInPassword">Password</label>
+                </div>
+                <br>
+
+                <div class="d-grid gap-2 mb-3">
+                    <button type="button" class="btn btn-primary" id="signInBtn" name="signInBtn"
+                        onclick="signInBtn()">Sign In</button>
+                </div>
+
             </div>
 
-            <!-- Products -->
-            <div id="products" class="col py-3">
-                <div class="row">
-                    <?php
-                    $counter = 1;
-                    ?>
-                    @foreach ($products as $prod)
-
-                        <div class="col-4">
-                            <div class="card border-4 mb-3 w3-hover-pale-red" style="max-width: 18rem;">
-                                <div class="card-header bg-transparent w3-text-deep-orange">
-                                    {{ $prod->category }}
-                                </div>
-
-                                <div class="card-body text-success">
-                                    <h2 id='nameID{{ $counter }}' class="card-title w3-text-indigo">
-                                        {{ $prod->name }}</h2>
-                                    <div style="display: none">
-                                        <h6 id='stockID{{ $counter }}' class="card-title">{{ $prod->stock }}
-                                        </h6>
-                                    </div>
-                                </div>
-
-                                <div class="card-footer bg-transparent">
-                                    <div style="display: none">
-                                        <h6 id='priceID{{ $counter }}'>${{ $prod->price }}</h6>
-                                    </div>
-                                    <div class="d-grid gap-2 col-6 mx-auto">
-                                        <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#staticBackdrop"
-                                            onclick="openModalInfo({{ $counter }})">BUY</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <?php
-                        $counter = $counter + 1;
-                        ?>
-
-                    @endforeach
+            {{-- user sign up --}}
+            <div class="tab-pane fade" id="signUp" role="tabpanel" aria-labelledby="signUp-tab">
+                <br>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="userSignUpEmail" placeholder="name@example.com">
+                    <label for="userSignUpEmail">Email address</label>
                 </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade bg-dark" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="userSignUpPassword" placeholder="Password">
+                    <label for="userSignUpPassword">Password</label>
                 </div>
-                <div class="modal-body">
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-4">
-                            </div>
-                            <div class="col-4 text-center w3-xxlarge w3-text-deep-orange">
-                                <div id="name"></div>
-                            </div>
-                            <div class="col-4">
-                            </div>
-                        </div>
-                        <br><br><br>
-                        <div class="row">
-                            <div class="col text-center w3-xlarge w3-text-indigo">
-                                <div id="stock"></div>
-                            </div>
-                            <div class="col text-center w3-xlarge w3-text-indigo">
-                                <div id="price"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" onclick="modalBuySwal()">Buy</button>
+                <br>
+                <div class="d-grid gap-2 mb-3">
+                    <button type="button" class="btn btn-primary" id="signInBtn" name="signInBtn"
+                        onclick="signUpBtn()">Sign Up</button>
                 </div>
             </div>
         </div>
     </div>
+
 
     <script>
-        $(document).ready(function() {
+        function signUpBtn() {
+            console.log($("#userSignUpEmail").val());
+            console.log($("#userSignUpPassword").val());
 
-        });
 
-        function openModalInfo(count) {
-            $("#staticBackdropLabel").text("ELECTRONIC");
-
-            $("#name").text($('#nameID' + count).text());
-
-            $('#stock').text("Stock: " + parseInt($('#stockID' + count).text()));
-
-            $("#price").text("Cost: " + $('#priceID' + count).text());
         }
 
-        function modalBuySwal() {
-            swal({
-                    title: "Are you sure?",
-                    text: "You are going to buy this item",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        swal("Thanks for using MrKacmaz Online Shopping System!", {
-                            icon: "success",
-                        });
-
-                        $("#staticBackdrop").modal("hide");
-                    } else {
-                        $("#staticBackdrop").modal("hide");
-                    }
-                });
-
+        function signInBtn() {
+            console.log($("#userSignInName").val());
+            console.log($("#userSignInSurname").val());
+            console.log($("#userSignInEmail").val());
+            console.log($("#userSignInPassword").val());
         }
     </script>
-
 
 </body>
 

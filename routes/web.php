@@ -14,15 +14,14 @@ use App\Http\Controllers\ProductsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-
-
+// PRODUCT
 Route::get('/home', [ProductsController::class, 'home']);
-Route::get('/', [ProductsController::class, 'index']);
+Route::get('/', [ProductsController::class, 'home']);
 Route::get('/electronic', [ProductsController::class, 'index']);
 Route::get('/mechanism', [ProductsController::class, 'mechanism']);
 Route::get('/architect', [ProductsController::class, 'architect']);
+
+
+// SIGN
+Route::get('/sign-in', [ProductsController::class, 'signIn']);
+Route::get('/sign-up', [ProductsController::class, 'signUp']);

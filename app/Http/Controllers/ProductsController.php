@@ -12,7 +12,6 @@ class ProductsController extends Controller
     public function home()
     {
         $products = Product::all();
-        $catagoryName = 'All';
         // return view('welcome', ['products' => $products]);
         return view('welcome', compact('products'));
     }
@@ -22,7 +21,6 @@ class ProductsController extends Controller
     {
         $products = Product::where('category', 'Electronic')
             ->get();
-        $catagoryName = 'Electronic';
         return view('welcome', compact('products'));
     }
 
@@ -39,7 +37,14 @@ class ProductsController extends Controller
     {
         $products = Product::where('category', 'Architect')
             ->get();
-        $catagoryName = 'Architect';
         return view('welcome', compact('products'));
+    }
+
+    public function signIn(){
+
+    }
+
+    public function signUp(){
+        
     }
 }
