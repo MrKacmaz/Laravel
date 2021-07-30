@@ -54,47 +54,68 @@
             {{-- user sign in --}}
             <div class="tab-pane fade show active" id="signIn" role="tabpanel" aria-labelledby="signIn-tab">
                 <br>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="userSignInName" placeholder="Name">
-                    <label for="userSignInName">Name</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="userSignInSurname" placeholder="Surname">
-                    <label for="userSignInSurname">Surname</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="userSignInEmail" placeholder="name@example.com">
-                    <label for="userSignInEmail">Email address</label>
-                </div>
-                <div class="form-floating">
-                    <input type="password" class="form-control" id="userSignInPassword" placeholder="Password">
-                    <label for="userSignInPassword">Password</label>
-                </div>
-                <br>
 
-                <div class="d-grid gap-2 mb-3">
-                    <button type="button" class="btn btn-primary" id="signInBtn" name="signInBtn"
-                        onclick="signInBtn()">Sign In</button>
-                </div>
+                <form action="{{ url('newUserSign') }}" method="post">
+
+                    @csrf {{ csrf_field() }}
+
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="userSignInName" name="userSignInName"
+                            placeholder="Name">
+                        <label for="userSignInName">Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="userSignInSurname" name="userSignInSurname"
+                            placeholder="Surname">
+                        <label for="userSignInSurname">Surname</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="userSignInEmail" name="userSignInEmail"
+                            placeholder="name@example.com">
+                        <label for="userSignInEmail">Email address</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="userSignInPassword" name="userSignInPassword"
+                            placeholder="Password">
+                        <label for="userSignInPassword">Password</label>
+                    </div>
+                    <br>
+
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="submit" class="btn btn-primary" id="signInBtn" name="signInBtn"
+                            onclick="signInBtn()">Sign In</button>
+                    </div>
+                </form>
 
             </div>
 
             {{-- user sign up --}}
             <div class="tab-pane fade" id="signUp" role="tabpanel" aria-labelledby="signUp-tab">
                 <br>
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="userSignUpEmail" placeholder="name@example.com">
-                    <label for="userSignUpEmail">Email address</label>
-                </div>
-                <div class="form-floating">
-                    <input type="password" class="form-control" id="userSignUpPassword" placeholder="Password">
-                    <label for="userSignUpPassword">Password</label>
-                </div>
-                <br>
-                <div class="d-grid gap-2 mb-3">
-                    <button type="button" class="btn btn-primary" id="signInBtn" name="signInBtn"
-                        onclick="signUpBtn()">Sign Up</button>
-                </div>
+
+                <form action="{{ url('userLogin') }}" method="post">
+
+                    @csrf {{ csrf_field() }}
+
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="userSignUpEmail" name="userSignUpEmail"
+                            placeholder="name@example.com">
+                        <label for="userSignUpEmail">Email address</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="userSignUpPassword" name="userSignUpPassword"
+                            placeholder="Password">
+                        <label for="userSignUpPassword">Password</label>
+                    </div>
+                    <br>
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="submit" class="btn btn-primary" id="signInBtn" name="signInBtn"
+                            onclick="signUpBtn()">Sign Up</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
