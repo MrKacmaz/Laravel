@@ -41,6 +41,11 @@ class ProductsController extends Controller
         return view('userPage', compact('products'));
     }
 
+
+    // 
+    // ------------------------------------------------
+    // 
+
     public function signIn()
     {
         $users = User::all();
@@ -55,7 +60,7 @@ class ProductsController extends Controller
 
 
     // 
-    // 
+    // ------------------------------------------------
     // 
 
     public function newUserStore(Request $request)

@@ -111,7 +111,7 @@
                     </div>
                     <br>
                     <div class="d-grid gap-2 mb-3">
-                        <button type="submit" class="btn btn-primary" id="signInBtn" name="signInBtn"
+                        <button type="submit" class="btn btn-primary" id="signUpBtn" name="signUpBtn"
                             onclick="signUpBtn()">Sign Up</button>
                     </div>
                 </form>

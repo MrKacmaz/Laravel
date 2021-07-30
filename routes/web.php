@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\newUserSign;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,16 +26,14 @@ Route::get('/architect', [ProductsController::class, 'architect']);
 
 // SIGN
 Route::get('/', [ProductsController::class, 'signIn']);
-Route::get('/sign-in', [ProductsController::class, 'signIn']);
-Route::get('/sign-up', [ProductsController::class, 'signUp']);
+Route::post('/userLogin', [ProductsController::class, 'home'])->middleware(login::class);
+Route::post('/newUserSign', [newUserSign::class, 'addDbNewUser']);
 
 // Route::post('/newUserSign', [ProductsController::class, 'newUserStore'])->name('newUserName', 'newUserSurname', 'newUserEmail', 'newUserPassword');
 // Route::get('/newUserSign', [ProductsController::class, 'newUserStore'])->name('newUserName', 'newUserSurname', 'newUserEmail', 'newUserPassword');
 
 
-Route::post('/newUserSign')->middleware();
 
 
-// Route::post('/userLogin', [login::class, 'handle'])->middleware();//
+// Route::post('/userLogin', [login::class, 'handle'])->middleware();
 // Route::post('/userLogin', [login::class, 'handle'])->middleware(login::class);
-Route::post('/userLogin', [ProductsController::class, 'home'])->middleware(login::class);
