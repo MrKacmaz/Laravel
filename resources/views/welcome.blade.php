@@ -83,8 +83,7 @@
                     <br>
 
                     <div class="d-grid gap-2 mb-3">
-                        <button type="submit" class="btn btn-primary" id="signInBtn" name="signInBtn"
-                            onclick="signInBtn()">Sign In</button>
+                        <button type="submit" class="btn btn-primary" id="signInBtn" name="signInBtn">Sign In</button>
                     </div>
                 </form>
 
@@ -111,31 +110,13 @@
                     </div>
                     <br>
                     <div class="d-grid gap-2 mb-3">
-                        <button type="submit" class="btn btn-primary" id="signUpBtn" name="signUpBtn"
-                            onclick="signUpBtn()">Sign Up</button>
+                        <button type="submit" class="btn btn-primary" id="signUpBtn" name="signUpBtn">Sign Up</button>
                     </div>
                 </form>
 
             </div>
         </div>
     </div>
-
-
-    <script>
-        function signUpBtn() {
-            console.log($("#userSignUpEmail").val());
-            console.log($("#userSignUpPassword").val());
-
-
-        }
-
-        function signInBtn() {
-            console.log($("#userSignInName").val());
-            console.log($("#userSignInSurname").val());
-            console.log($("#userSignInEmail").val());
-            console.log($("#userSignInPassword").val());
-        }
-    </script>
 
 </body>
 
