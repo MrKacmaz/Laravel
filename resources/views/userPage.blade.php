@@ -1,3 +1,9 @@
+<?php
+// SESSION
+session_start();
+ob_start();
+?>
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -70,8 +76,12 @@
             </div>
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <a class="nav-link active" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropTwo"
-                        aria-current="page"><button class="btn btn-outline-primary">Sign-In</button></a>
+                    <p>
+                        {{ $_SESSION['user']->name . ' ' . $_SESSION['user']->surname }}
+                    </p>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-outline-danger"><a href=" {{ url('logout') }} ">Logout</a></button>
                 </li>
             </ul>
         </div>
@@ -248,6 +258,11 @@
         function signUpBtn() {
             var name = $("#modalName").val();
             var password = $("#modalPassword").val();
+        }
+
+
+        function logout() {
+
         }
     </script>
 

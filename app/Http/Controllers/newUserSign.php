@@ -24,5 +24,7 @@ class newUserSign extends Controller
 
         // User::created($newUser);
         $newUser->save();
+
+        return redirect("/asdas");
     }
 }

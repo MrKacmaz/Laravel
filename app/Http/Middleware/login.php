@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-
+// SESSION 
+session_start();
+ob_start();
 
 class login
 {
@@ -33,6 +35,8 @@ class login
 
                 // Create SESSION
                 // session($currentUser, $user);
+
+                $_SESSION['user'] = $user;
 
                 return redirect('/home');
                 // return $next($request);

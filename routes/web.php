@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use Symfony\Component\HttpFoundation\Request;
 use App\Http\Middleware\login;
+use App\Http\Controllers\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,9 @@ Route::get('/architect', [ProductsController::class, 'architect']);
 Route::get('/', [ProductsController::class, 'signIn']);
 Route::post('/userLogin', [ProductsController::class, 'home'])->middleware(login::class);
 Route::post('/newUserSign', [newUserSign::class, 'addDbNewUser']);
+
+// Logout
+Route::post('/logout', [LogoutController::class, 'logoutFun']);
 
 // Route::post('/newUserSign', [ProductsController::class, 'newUserStore'])->name('newUserName', 'newUserSurname', 'newUserEmail', 'newUserPassword');
 // Route::get('/newUserSign', [ProductsController::class, 'newUserStore'])->name('newUserName', 'newUserSurname', 'newUserEmail', 'newUserPassword');
